@@ -50,6 +50,7 @@ ott-poc.iml
 *.iml
 *.ipr
 *.iws
+/out/
 
 #  Gradle settings   #
 ######################
