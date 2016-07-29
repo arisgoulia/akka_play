@@ -1,4 +1,4 @@
-package com.aristoula.cluster;
+package aristoula.cluster;
 
 import java.io.Serializable;
 

@@ -1,9 +1,9 @@
-package com.aristoula.cluster;
+package aristoula.cluster;
 
 import akka.actor.ActorRef;
 import akka.actor.Terminated;
 import akka.actor.UntypedActor;
-import static com.aristoula.cluster.TransformationMessages.*;
+import static aristoula.cluster.TransformationMessages.*;
 
 
 import java.util.ArrayList;

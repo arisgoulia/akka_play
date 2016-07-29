@@ -1,4 +1,4 @@
-package com.aristoula.cluster;
+package aristoula.cluster;
 
 import akka.actor.UntypedActor;
 import akka.cluster.Cluster;
@@ -7,7 +7,7 @@ import akka.cluster.ClusterEvent.MemberUp;
 import akka.cluster.Member;
 import akka.cluster.MemberStatus;
 
-import static com.aristoula.cluster.TransformationMessages.*;
+import static aristoula.cluster.TransformationMessages.*;
 
 //#backend
 public class TransformationBackend extends UntypedActor {

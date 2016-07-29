@@ -1,4 +1,4 @@
-package com.aristoula.cluster;
+package aristoula.cluster;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -14,7 +14,7 @@ import scala.concurrent.duration.FiniteDuration;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.aristoula.cluster.TransformationMessages.*;
+import static aristoula.cluster.TransformationMessages.*;
 import static akka.pattern.Patterns.ask;
 
 public class TransformationFrontendMain {
