@@ -26,7 +26,7 @@ public class Subscriber extends UntypedActor {
         if (msg instanceof String)
             log.info("Got: {}", msg);
         else if (msg instanceof DistributedPubSubMediator.SubscribeAck)
-            log.info("subscribing to topic ");
+            log.info("subscribing to topic " + idToWatch);
         else
             unhandled(msg);
     }
