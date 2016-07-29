@@ -1,0 +1,59 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+/classes
+ 
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
+ 
+# Logs and databases #
+######################
+*.log
+ 
+# OS/Editors generated files #
+##############################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.swp
+
+#       SVN 	     #
+######################
+.svn/
+
+#  Eclipse / IDEA settings  #
+#############################
+.settings/
+bin/
+.idea/
+ott-poc.iml
+.project
+.classpath
+*.iml
+*.ipr
+*.iws
+
+#  Gradle settings   #
+######################
+.gradle/
+/build/
+gradlew.bat
+
