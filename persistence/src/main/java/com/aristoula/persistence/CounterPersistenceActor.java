@@ -10,7 +10,7 @@ import akka.persistence.UntypedPersistentActor;
 
 import java.io.Serializable;
 
-public class CounterLocalPersistenceActor extends UntypedPersistentActor {
+public class CounterPersistenceActor extends UntypedPersistentActor {
 
     private int counter = 0;
 
@@ -18,7 +18,7 @@ public class CounterLocalPersistenceActor extends UntypedPersistentActor {
 
         final ActorSystem system = ActorSystem.create("example");
         final ActorRef persistentActor =
-                system.actorOf(Props.create(CounterLocalPersistenceActor.class), "persistentActor-4-java");
+                system.actorOf(Props.create(CounterPersistenceActor.class), "persistentActor-4-java");
 
         persistentActor.tell(new ModifyCounter(1), null);
         persistentActor.tell(new ModifyCounter(1), null);

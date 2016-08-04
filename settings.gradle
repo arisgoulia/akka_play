@@ -1,6 +1,5 @@
 rootProject.name = 'clustering-akka'
 include 'basic-clustering'
 include 'simple-routing'
-include 'advanced-routing'
 include 'persistence'
 
