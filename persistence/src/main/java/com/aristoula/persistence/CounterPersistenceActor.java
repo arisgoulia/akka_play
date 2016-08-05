@@ -14,21 +14,6 @@ public class CounterPersistenceActor extends UntypedPersistentActor {
 
     private int counter = 0;
 
-    public static void main(String... args) throws Exception {
-
-        final ActorSystem system = ActorSystem.create("example");
-        final ActorRef persistentActor =
-                system.actorOf(Props.create(CounterPersistenceActor.class), "persistentActor-4-java");
-
-        persistentActor.tell(new ModifyCounter(1), null);
-        persistentActor.tell(new ModifyCounter(1), null);
-        persistentActor.tell(new ModifyCounter(1), null);
-        persistentActor.tell("snap", null);
-
-        Thread.sleep(10000);
-        system.terminate();
-    }
-
     @Override
     public String persistenceId() {
         return "sample-counter-persistor-1";
