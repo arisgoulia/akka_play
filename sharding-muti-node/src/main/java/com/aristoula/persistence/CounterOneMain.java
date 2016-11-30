@@ -4,67 +4,63 @@
 
 package com.aristoula.persistence;
 
-import akka.actor.AbstractActor;
-import akka.actor.ActorInitializationException;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.OneForOneStrategy;
-import akka.actor.PoisonPill;
 import akka.actor.Props;
-import akka.actor.ReceiveTimeout;
-import akka.actor.SupervisorStrategy;
-import akka.actor.Terminated;
-import akka.actor.UntypedActor;
-import akka.cluster.Cluster;
 import akka.cluster.sharding.ClusterSharding;
 import akka.cluster.sharding.ClusterShardingSettings;
-import akka.cluster.sharding.ShardRegion;
-import akka.japi.Option;
-import akka.japi.Procedure;
-import akka.japi.pf.DeciderBuilder;
-import akka.japi.pf.ReceiveBuilder;
-import akka.persistence.UntypedPersistentActor;
+import com.aristoula.persistence.messages.CounterOp;
+import com.aristoula.persistence.messages.EntityEnvelope;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import scala.concurrent.duration.Duration;
+import scala.concurrent.duration.FiniteDuration;
 
-
-import static java.util.concurrent.TimeUnit.SECONDS;
+import java.util.concurrent.TimeUnit;
 
 // Doc code, compile only
-public class ClusterShardingTest {
-
-  private static ActorSystem system = ActorSystem.create("SharderTest");
+public class CounterOneMain {
 
   private static ActorRef getSelf() {
     return null;
   }
 
-  public static void main (String[] args) {
-    //#counter-extractor
+  public static void main (String[] args) throws InterruptedException {
 
-    //#counter-extractor
+    final String port = args.length > 0 ? args[0] : "0";
+    final Config config = ConfigFactory.parseString("akka.remote.netty.tcp.port=" + port).
+                                               withFallback(ConfigFactory.load());
 
-    //#counter-start
-    Option<String> roleOption = Option.none();
+    ActorSystem system = ActorSystem.create("ClusterSystem", config);
+
     ClusterShardingSettings settings = ClusterShardingSettings.create(system);
-    ActorRef startedCounterRegion = ClusterSharding.get(system).start("Counter",
+    final ActorRef startedCounterRegion = ClusterSharding.get(system).start("Counter",
                                                                       Props.create(Counter.class),
                                                                       settings,
                                                                       new MessageExtractor());
+
+    Thread.sleep(10000L);
     //#counter-start
 
+    final FiniteDuration interval = Duration.create(2, TimeUnit.SECONDS);
     //#counter-usage
-    ActorRef counterRegion = ClusterSharding.get(system).shardRegion("Counter");
-    counterRegion.tell(new Counter.Get(123), getSelf());
+//    final ActorRef counterRegion = ClusterSharding.get(system).shardRegion("Counter");
 
-    counterRegion.tell(new Counter.EntityEnvelope(123,
-                                                  Counter.CounterOp.INCREMENT), getSelf());
-    counterRegion.tell(new Counter.Get(123), getSelf());
-    //#counter-usage
+    for(int i = 0; i<10 ; i ++) {
 
-    //#counter-supervisor-start
-    ClusterSharding.get(system).start("SupervisedCounter",
-                                      Props.create(CounterSupervisor.class), settings, messageExtractor);
-    //#counter-supervisor-start
+        final int j = i;
+
+      system.scheduler().schedule(interval, interval, new Runnable() {
+        public void run() {
+            startedCounterRegion.tell(
+                    new EntityEnvelope((long)j,
+                                       CounterOp.INCREMENT)
+                    , ActorRef.noSender());
+
+        }
+      }, system.dispatcher());
+    }
+
   }
 
 

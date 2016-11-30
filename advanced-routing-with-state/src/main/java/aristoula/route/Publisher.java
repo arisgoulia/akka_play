@@ -1,22 +1,31 @@
 package aristoula.route;
 
 import akka.actor.ActorRef;
-import akka.actor.UntypedActor;
 import akka.cluster.pubsub.DistributedPubSub;
 import akka.cluster.pubsub.DistributedPubSubMediator;
+import akka.persistence.UntypedPersistentActorWithAtLeastOnceDelivery;
 
-public class Publisher extends UntypedActor {
+public class Publisher extends UntypedPersistentActorWithAtLeastOnceDelivery {
 
     private final String topicToSend;
-
-    public Publisher(String topicToSend){
-        this.topicToSend = topicToSend;
-    }
-
+    private final String persistenceId;
     // activate the extension
     ActorRef mediator = DistributedPubSub.get(getContext().system()).mediator();
 
-    public void onReceive(Object msg) {
+    public Publisher(String persistenceId, String topic) {
+        this.persistenceId = persistenceId;
+        this.topicToSend = topic;
+    }
+
+    @Override
+    public void onReceiveRecover(final Object msg) throws Exception {
+
+
+    }
+
+    @Override
+    public void onReceiveCommand(final Object msg) throws Exception {
+
         if (msg instanceof String) {
             String in = (String) msg;
             String out = in.toUpperCase();
@@ -25,5 +34,11 @@ public class Publisher extends UntypedActor {
         } else {
             unhandled(msg);
         }
+
+    }
+
+    @Override
+    public String persistenceId() {
+        return this.persistenceId;
     }
 }

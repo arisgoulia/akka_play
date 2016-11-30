@@ -1,4 +1,5 @@
 package com.aristoula.persistence.messages;
 
-public class CounterOp {
+public enum CounterOp {
+    INCREMENT, DECREMENT
 }
