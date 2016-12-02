@@ -2,6 +2,5 @@ rootProject.name = 'clustering-akka'
 include 'basic-clustering'
 include 'simple-routing'
 include 'persistence'
-include 'advanced-routing-with-state'
 include 'sharding-muti-node'
 
