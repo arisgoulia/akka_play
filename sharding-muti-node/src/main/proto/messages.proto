@@ -1,0 +1,23 @@
+package com.aristoula.persistence.messages.proto;
+
+message ShardMessage {
+    required int64 id = 1;
+    message EntityEnvelope {
+        optional CounterOp payload = 2;
+    }
+
+}
+
+message CounterChanged {
+    required int32 delta = 1;
+}
+
+enum CounterOp {
+    INCREMENT = 0;
+    DECREMENT = 1;
+}
+
+
+message Get {
+    required int64 counterId = 1;
+}

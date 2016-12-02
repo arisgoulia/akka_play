@@ -4,9 +4,9 @@ import akka.actor.PoisonPill;
 import akka.actor.ReceiveTimeout;
 import akka.actor.UntypedActor;
 import akka.cluster.sharding.ShardRegion;
-import com.aristoula.persistence.messages.CounterChanged;
-import com.aristoula.persistence.messages.CounterOp;
-import com.aristoula.persistence.messages.Get;
+import com.aristoula.persistence.messages.java.serialisation.CounterChanged;
+import com.aristoula.persistence.messages.java.serialisation.CounterOp;
+import com.aristoula.persistence.messages.java.serialisation.Get;
 import scala.concurrent.duration.Duration;
 
 
@@ -34,6 +34,7 @@ public class Counter extends UntypedActor {
     }
 
     void updateState(CounterChanged event) {
+        System.out.print("Received CounterChanged event");
         count += event.delta;
     }
 

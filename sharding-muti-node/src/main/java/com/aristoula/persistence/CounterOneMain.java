@@ -9,8 +9,8 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.cluster.sharding.ClusterSharding;
 import akka.cluster.sharding.ClusterShardingSettings;
-import com.aristoula.persistence.messages.CounterOp;
-import com.aristoula.persistence.messages.EntityEnvelope;
+import com.aristoula.persistence.messages.proto.Messages;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import scala.concurrent.duration.Duration;
@@ -52,10 +52,13 @@ public class CounterOneMain {
 
       system.scheduler().schedule(interval, interval, new Runnable() {
         public void run() {
-            startedCounterRegion.tell(
-                    new EntityEnvelope((long)j,
-                                       CounterOp.INCREMENT)
-                    , ActorRef.noSender());
+
+              Messages.EntityEnvelope.Builder builder = Messages.EntityEnvelope.newBuilder();
+              builder.setId(((long)j));
+              builder.setPayload(Messages.CounterOp.INCREMENT);
+
+            startedCounterRegion.tell(builder.build(), ActorRef.noSender());
+
 
         }
       }, system.dispatcher());
