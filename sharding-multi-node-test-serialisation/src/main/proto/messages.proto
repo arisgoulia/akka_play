@@ -3,8 +3,9 @@ package com.aristoula.persistence.messages.proto;
 message EntityEnvelope {
     optional int64 id = 1;
     optional CounterOp payload = 2;
-    optional int64 anotherField = 3;
+    optional string ohField = 3;
     optional int64 someOtherShit = 4;
+    optional string MoreShitToCome = 5;
 }
 
 message CounterChanged {

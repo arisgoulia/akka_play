@@ -56,7 +56,9 @@ public class CounterOneMain {
               Messages.EntityEnvelope.Builder builder = Messages.EntityEnvelope.newBuilder();
               builder.setId(((long)j));
               builder.setPayload(Messages.CounterOp.INCREMENT);
-              builder.setAnotherField(1234L);
+              builder.setSomeOtherShit(5000L);
+              builder.setMoreShitToCome("ohlala");
+            builder.setOhField("mpeofdsfdd");
 
             startedCounterRegion.tell(builder.build(), ActorRef.noSender());
 

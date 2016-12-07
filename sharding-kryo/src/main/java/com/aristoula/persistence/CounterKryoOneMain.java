@@ -9,8 +9,8 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.cluster.sharding.ClusterSharding;
 import akka.cluster.sharding.ClusterShardingSettings;
-import com.aristoula.persistence.messages.proto.Messages;
-import com.google.protobuf.InvalidProtocolBufferException;
+import com.aristoula.persistence.messages.java.serialisation.CounterOp;
+import com.aristoula.persistence.messages.java.serialisation.EntityEnvelope;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import scala.concurrent.duration.Duration;
@@ -19,7 +19,7 @@ import scala.concurrent.duration.FiniteDuration;
 import java.util.concurrent.TimeUnit;
 
 // Doc code, compile only
-public class CounterOneMain {
+public class CounterKryoOneMain {
 
   private static ActorRef getSelf() {
     return null;
@@ -43,22 +43,17 @@ public class CounterOneMain {
     //#counter-start
 
     final FiniteDuration interval = Duration.create(2, TimeUnit.SECONDS);
-    //#counter-usage
-//    final ActorRef counterRegion = ClusterSharding.get(system).shardRegion("Counter");
 
-    for(int i = 0; i<10 ; i ++) {
+    for(int i = 0; i<100 ; i ++) {
 
         final int j = i;
 
       system.scheduler().schedule(interval, interval, new Runnable() {
         public void run() {
 
-              Messages.EntityEnvelope.Builder builder = Messages.EntityEnvelope.newBuilder();
-              builder.setId(((long)j));
-              builder.setPayload(Messages.CounterOp.INCREMENT);
-              builder.setAnotherField(1234L);
+            EntityEnvelope entityEnvelope = new EntityEnvelope((long)j, CounterOp.INCREMENT);
 
-            startedCounterRegion.tell(builder.build(), ActorRef.noSender());
+            startedCounterRegion.tell(entityEnvelope, ActorRef.noSender());
 
 
         }

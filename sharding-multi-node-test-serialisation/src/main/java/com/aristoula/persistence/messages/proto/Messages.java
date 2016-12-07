@@ -127,13 +127,18 @@ public final class Messages {
     com.aristoula.persistence.messages.proto.Messages.CounterOp getPayload();
 
     /**
-     * <code>optional int64 anotherField = 3;</code>
+     * <code>optional string ohField = 3;</code>
      */
-    boolean hasAnotherField();
+    boolean hasOhField();
     /**
-     * <code>optional int64 anotherField = 3;</code>
+     * <code>optional string ohField = 3;</code>
      */
-    long getAnotherField();
+    java.lang.String getOhField();
+    /**
+     * <code>optional string ohField = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getOhFieldBytes();
 
     /**
      * <code>optional int64 someOtherShit = 4;</code>
@@ -143,6 +148,20 @@ public final class Messages {
      * <code>optional int64 someOtherShit = 4;</code>
      */
     long getSomeOtherShit();
+
+    /**
+     * <code>optional string MoreShitToCome = 5;</code>
+     */
+    boolean hasMoreShitToCome();
+    /**
+     * <code>optional string MoreShitToCome = 5;</code>
+     */
+    java.lang.String getMoreShitToCome();
+    /**
+     * <code>optional string MoreShitToCome = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMoreShitToComeBytes();
   }
   /**
    * Protobuf type {@code com.aristoula.persistence.messages.proto.EntityEnvelope}
@@ -158,8 +177,9 @@ public final class Messages {
     private EntityEnvelope() {
       id_ = 0L;
       payload_ = 0;
-      anotherField_ = 0L;
+      ohField_ = "";
       someOtherShit_ = 0L;
+      moreShitToCome_ = "";
     }
 
     @java.lang.Override
@@ -206,14 +226,21 @@ public final class Messages {
               }
               break;
             }
-            case 24: {
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              anotherField_ = input.readInt64();
+              ohField_ = bs;
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
               someOtherShit_ = input.readInt64();
+              break;
+            }
+            case 42: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000010;
+              moreShitToCome_ = bs;
               break;
             }
           }
@@ -272,19 +299,46 @@ public final class Messages {
       return result == null ? com.aristoula.persistence.messages.proto.Messages.CounterOp.INCREMENT : result;
     }
 
-    public static final int ANOTHERFIELD_FIELD_NUMBER = 3;
-    private long anotherField_;
+    public static final int OHFIELD_FIELD_NUMBER = 3;
+    private volatile java.lang.Object ohField_;
     /**
-     * <code>optional int64 anotherField = 3;</code>
+     * <code>optional string ohField = 3;</code>
      */
-    public boolean hasAnotherField() {
+    public boolean hasOhField() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional int64 anotherField = 3;</code>
+     * <code>optional string ohField = 3;</code>
      */
-    public long getAnotherField() {
-      return anotherField_;
+    public java.lang.String getOhField() {
+      java.lang.Object ref = ohField_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          ohField_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string ohField = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOhFieldBytes() {
+      java.lang.Object ref = ohField_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ohField_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int SOMEOTHERSHIT_FIELD_NUMBER = 4;
@@ -300,6 +354,48 @@ public final class Messages {
      */
     public long getSomeOtherShit() {
       return someOtherShit_;
+    }
+
+    public static final int MORESHITTOCOME_FIELD_NUMBER = 5;
+    private volatile java.lang.Object moreShitToCome_;
+    /**
+     * <code>optional string MoreShitToCome = 5;</code>
+     */
+    public boolean hasMoreShitToCome() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional string MoreShitToCome = 5;</code>
+     */
+    public java.lang.String getMoreShitToCome() {
+      java.lang.Object ref = moreShitToCome_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          moreShitToCome_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string MoreShitToCome = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMoreShitToComeBytes() {
+      java.lang.Object ref = moreShitToCome_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        moreShitToCome_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -321,10 +417,13 @@ public final class Messages {
         output.writeEnum(2, payload_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(3, anotherField_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, ohField_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt64(4, someOtherShit_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, moreShitToCome_);
       }
       unknownFields.writeTo(output);
     }
@@ -343,12 +442,14 @@ public final class Messages {
           .computeEnumSize(2, payload_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, anotherField_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, ohField_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, someOtherShit_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, moreShitToCome_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -376,15 +477,20 @@ public final class Messages {
       if (hasPayload()) {
         result = result && payload_ == other.payload_;
       }
-      result = result && (hasAnotherField() == other.hasAnotherField());
-      if (hasAnotherField()) {
-        result = result && (getAnotherField()
-            == other.getAnotherField());
+      result = result && (hasOhField() == other.hasOhField());
+      if (hasOhField()) {
+        result = result && getOhField()
+            .equals(other.getOhField());
       }
       result = result && (hasSomeOtherShit() == other.hasSomeOtherShit());
       if (hasSomeOtherShit()) {
         result = result && (getSomeOtherShit()
             == other.getSomeOtherShit());
+      }
+      result = result && (hasMoreShitToCome() == other.hasMoreShitToCome());
+      if (hasMoreShitToCome()) {
+        result = result && getMoreShitToCome()
+            .equals(other.getMoreShitToCome());
       }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -406,15 +512,18 @@ public final class Messages {
         hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
         hash = (53 * hash) + payload_;
       }
-      if (hasAnotherField()) {
-        hash = (37 * hash) + ANOTHERFIELD_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getAnotherField());
+      if (hasOhField()) {
+        hash = (37 * hash) + OHFIELD_FIELD_NUMBER;
+        hash = (53 * hash) + getOhField().hashCode();
       }
       if (hasSomeOtherShit()) {
         hash = (37 * hash) + SOMEOTHERSHIT_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
             getSomeOtherShit());
+      }
+      if (hasMoreShitToCome()) {
+        hash = (37 * hash) + MORESHITTOCOME_FIELD_NUMBER;
+        hash = (53 * hash) + getMoreShitToCome().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -538,10 +647,12 @@ public final class Messages {
         bitField0_ = (bitField0_ & ~0x00000001);
         payload_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        anotherField_ = 0L;
+        ohField_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         someOtherShit_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000008);
+        moreShitToCome_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -577,11 +688,15 @@ public final class Messages {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.anotherField_ = anotherField_;
+        result.ohField_ = ohField_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
         result.someOtherShit_ = someOtherShit_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.moreShitToCome_ = moreShitToCome_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -630,11 +745,18 @@ public final class Messages {
         if (other.hasPayload()) {
           setPayload(other.getPayload());
         }
-        if (other.hasAnotherField()) {
-          setAnotherField(other.getAnotherField());
+        if (other.hasOhField()) {
+          bitField0_ |= 0x00000004;
+          ohField_ = other.ohField_;
+          onChanged();
         }
         if (other.hasSomeOtherShit()) {
           setSomeOtherShit(other.getSomeOtherShit());
+        }
+        if (other.hasMoreShitToCome()) {
+          bitField0_ |= 0x00000010;
+          moreShitToCome_ = other.moreShitToCome_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -732,34 +854,78 @@ public final class Messages {
         return this;
       }
 
-      private long anotherField_ ;
+      private java.lang.Object ohField_ = "";
       /**
-       * <code>optional int64 anotherField = 3;</code>
+       * <code>optional string ohField = 3;</code>
        */
-      public boolean hasAnotherField() {
+      public boolean hasOhField() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional int64 anotherField = 3;</code>
+       * <code>optional string ohField = 3;</code>
        */
-      public long getAnotherField() {
-        return anotherField_;
+      public java.lang.String getOhField() {
+        java.lang.Object ref = ohField_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            ohField_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional int64 anotherField = 3;</code>
+       * <code>optional string ohField = 3;</code>
        */
-      public Builder setAnotherField(long value) {
-        bitField0_ |= 0x00000004;
-        anotherField_ = value;
+      public com.google.protobuf.ByteString
+          getOhFieldBytes() {
+        java.lang.Object ref = ohField_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ohField_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string ohField = 3;</code>
+       */
+      public Builder setOhField(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        ohField_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 anotherField = 3;</code>
+       * <code>optional string ohField = 3;</code>
        */
-      public Builder clearAnotherField() {
+      public Builder clearOhField() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        anotherField_ = 0L;
+        ohField_ = getDefaultInstance().getOhField();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string ohField = 3;</code>
+       */
+      public Builder setOhFieldBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        ohField_ = value;
         onChanged();
         return this;
       }
@@ -792,6 +958,82 @@ public final class Messages {
       public Builder clearSomeOtherShit() {
         bitField0_ = (bitField0_ & ~0x00000008);
         someOtherShit_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object moreShitToCome_ = "";
+      /**
+       * <code>optional string MoreShitToCome = 5;</code>
+       */
+      public boolean hasMoreShitToCome() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional string MoreShitToCome = 5;</code>
+       */
+      public java.lang.String getMoreShitToCome() {
+        java.lang.Object ref = moreShitToCome_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            moreShitToCome_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string MoreShitToCome = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMoreShitToComeBytes() {
+        java.lang.Object ref = moreShitToCome_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          moreShitToCome_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string MoreShitToCome = 5;</code>
+       */
+      public Builder setMoreShitToCome(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        moreShitToCome_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string MoreShitToCome = 5;</code>
+       */
+      public Builder clearMoreShitToCome() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        moreShitToCome_ = getDefaultInstance().getMoreShitToCome();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string MoreShitToCome = 5;</code>
+       */
+      public Builder setMoreShitToComeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        moreShitToCome_ = value;
         onChanged();
         return this;
       }
@@ -2132,14 +2374,15 @@ public final class Messages {
   static {
     java.lang.String[] descriptorData = {
       "\n\016messages.proto\022(com.aristoula.persiste" +
-      "nce.messages.proto\"\217\001\n\016EntityEnvelope\022\n\n" +
+      "nce.messages.proto\"\242\001\n\016EntityEnvelope\022\n\n" +
       "\002id\030\001 \001(\003\022D\n\007payload\030\002 \001(\01623.com.aristou" +
       "la.persistence.messages.proto.CounterOp\022" +
-      "\024\n\014anotherField\030\003 \001(\003\022\025\n\rsomeOtherShit\030\004" +
-      " \001(\003\"5\n\016CounterChanged\022\r\n\005delta\030\001 \001(\005\022\024\n" +
-      "\014anotherField\030\002 \001(\t\".\n\003Get\022\021\n\tcounterId\030" +
-      "\001 \001(\003\022\024\n\014anotherField\030\002 \001(\t*)\n\tCounterOp" +
-      "\022\r\n\tINCREMENT\020\000\022\r\n\tDECREMENT\020\001"
+      "\017\n\007ohField\030\003 \001(\t\022\025\n\rsomeOtherShit\030\004 \001(\003\022" +
+      "\026\n\016MoreShitToCome\030\005 \001(\t\"5\n\016CounterChange" +
+      "d\022\r\n\005delta\030\001 \001(\005\022\024\n\014anotherField\030\002 \001(\t\"." +
+      "\n\003Get\022\021\n\tcounterId\030\001 \001(\003\022\024\n\014anotherField" +
+      "\030\002 \001(\t*)\n\tCounterOp\022\r\n\tINCREMENT\020\000\022\r\n\tDE" +
+      "CREMENT\020\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2158,7 +2401,7 @@ public final class Messages {
     internal_static_com_aristoula_persistence_messages_proto_EntityEnvelope_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_aristoula_persistence_messages_proto_EntityEnvelope_descriptor,
-        new java.lang.String[] { "Id", "Payload", "AnotherField", "SomeOtherShit", });
+        new java.lang.String[] { "Id", "Payload", "OhField", "SomeOtherShit", "MoreShitToCome", });
     internal_static_com_aristoula_persistence_messages_proto_CounterChanged_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_aristoula_persistence_messages_proto_CounterChanged_fieldAccessorTable = new
