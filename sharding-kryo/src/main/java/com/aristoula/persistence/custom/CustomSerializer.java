@@ -3,8 +3,9 @@ package com.aristoula.persistence.custom;
 import akka.actor.ExtendedActorSystem;
 import com.twitter.chill.KryoInstantiator;
 import com.twitter.chill.akka.AkkaSerializer;
+import com.twitter.chill.akka.ConfiguredAkkaSerializer;
 
-public class CustomSerializer extends AkkaSerializer {
+public class CustomSerializer extends ConfiguredAkkaSerializer {
 
     public CustomSerializer(final ExtendedActorSystem system) {
         super(system);
@@ -12,6 +13,7 @@ public class CustomSerializer extends AkkaSerializer {
 
     @Override
     public KryoInstantiator kryoInstantiator() {
-        return new CustomKryoInstantiator();
+        return super.kryoInstantiator();
     }
+
 }
