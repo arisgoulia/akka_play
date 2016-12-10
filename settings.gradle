@@ -6,4 +6,5 @@ include 'sharding-muti-node'
 include 'sharding-multi-node-test-serialisation'
 include 'sharding-kryo'
 include 'sharding-kryo-second-instance'
+include 'kryo-serialisation'
 
